@@ -4,6 +4,7 @@
 	"description": "VSCode extension that helps write html image tag",
 	"publisher": "willywongi",	
 	"version": "0.0.0",
+	"repository": {"url": "https://github.com/willywongi/html-image-tag"},
 	"engines": {
 		"vscode": "^1.55.0"
 	},
