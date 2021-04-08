@@ -1,4 +1,4 @@
-# html-image README
+# html-image-tag README
 
 Insert a img tag with sensible defaults.
 

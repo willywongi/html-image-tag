@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as sharp from 'sharp';
 
 export function activate(context: vscode.ExtensionContext) {
-	vscode.commands.executeCommand('setContext', 'html-image.supportedExtname', [
+	vscode.commands.executeCommand('setContext', 'html-image-tag.supportedExtname', [
 		'.png',
 		'.jpeg', '.jpg',
 		'.webp',
@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 		'.svg'
 	  ]);
 	  
-	let disposable = vscode.commands.registerCommand('html-image.insertImgTag', (file) => {
+	let disposable = vscode.commands.registerCommand('html-image-tag.insertImgTag', (file) => {
 		const editor = vscode.window.activeTextEditor;
 		const relativePath = vscode.workspace.asRelativePath(file.path);
 		if (editor) {

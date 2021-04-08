@@ -1,7 +1,8 @@
 {
-	"name": "html-image",
-	"displayName": "html-image",
-	"description": "Insert state of the art image/picture tags.",
+	"name": "html-image-tag",
+	"displayName": "html-image-tag",
+	"description": "VSCode extension that helps write html image tag",
+	"publisher": "willywongi",	
 	"version": "0.0.0",
 	"engines": {
 		"vscode": "^1.55.0"
@@ -16,14 +17,14 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "html-image.insertImgTag",
+				"command": "html-image-tag.insertImgTag",
 				"title": "Insert img tag"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "html-image.insertImgTag",
+					"command": "html-image-tag.insertImgTag",
 					"when": "resourceExtname == .png || resourceExtname == .jpg || resourceExtname == .jpeg",
 					"group": "6_copypath"
 				}
