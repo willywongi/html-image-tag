@@ -1,27 +1,34 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as sharp from 'sharp';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "html-image" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('html-image.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Ciao mondo from html-image!');
+	vscode.commands.executeCommand('setContext', 'html-image.supportedExtname', [
+		'.png',
+		'.jpeg', '.jpg',
+		'.webp',
+		'.gif',
+		'.svg'
+	  ]);
+	  
+	let disposable = vscode.commands.registerCommand('html-image.insertImgTag', (file) => {
+		const editor = vscode.window.activeTextEditor;
+		const relativePath = vscode.workspace.asRelativePath(file.path);
+		if (editor) {
+			sharp(file.path).metadata().then(metadata => {
+				editor.edit(editBuilder => {
+					const selection = editor.selection;
+					const text = `<img src="${relativePath}" loading="lazy" decoding="async" width="${metadata.width}" height="${metadata.height}>`;
+					if (selection.isEmpty) {
+						editBuilder.insert(editor.selection.start, text);
+					} else {
+						editBuilder.replace(editor.selection, text);
+					}
+				});
+			})
+		}
 	});
 
 	context.subscriptions.push(disposable);
 }
-
-// this method is called when your extension is deactivated
-export function deactivate() {}

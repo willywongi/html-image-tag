@@ -1,8 +1,8 @@
 {
 	"name": "html-image",
 	"displayName": "html-image",
-	"description": "Insert state of the art image/picture tags",
-	"version": "0.0.1",
+	"description": "Insert state of the art image/picture tags.",
+	"version": "0.0.0",
 	"engines": {
 		"vscode": "^1.55.0"
 	},
@@ -10,16 +10,25 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:html-image.helloWorld"
+		"onFileSystem:file"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "html-image.helloWorld",
-				"title": "Hello World"
+				"command": "html-image.insertImgTag",
+				"title": "Insert img tag"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "html-image.insertImgTag",
+					"when": "resourceExtname == .png || resourceExtname == .jpg || resourceExtname == .jpeg",
+					"group": "6_copypath"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -30,16 +39,20 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.55.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"eslint": "^7.19.0",
+		"@types/sharp": "^0.28.0",
+		"@types/vscode": "^1.55.0",
 		"@typescript-eslint/eslint-plugin": "^4.14.1",
 		"@typescript-eslint/parser": "^4.14.1",
+		"eslint": "^7.19.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
 		"vscode-test": "^1.5.0"
+	},
+	"dependencies": {
+		"sharp": "^0.28.1"
 	}
 }

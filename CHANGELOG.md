@@ -2,8 +2,13 @@
 
 All notable changes to the "html-image" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+Following recommendations from [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-- Initial release
+## [0.0.0] 2021-04-08
+Initial release.
+### ADDED
+- File browser context command to insert img tag in editor.
+- Width and height attributes in the tag.
+- Loading="lazy" and decoding="async" attributes in the tag.
